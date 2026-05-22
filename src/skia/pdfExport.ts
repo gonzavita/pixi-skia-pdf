@@ -32,6 +32,17 @@ export async function exportSceneToPdf(
     title: 'Pixi → Skia сцена',
     creator: 'pixi-skia-pdf',
     producer: 'Skia PDF backend (CanvasKit)',
+    // CanvasKit-обёртка ставит внутреннее поле `_rootTag` только при наличии
+    // `rootTag`, а нативный embind требует его всегда (иначе ошибка
+    // «Missing field _rootTag»). Передаём минимальный корневой тег документа.
+    rootTag: {
+      id: 1,
+      type: 'Document',
+      alt: '',
+      language: 'ru',
+      attributes: [],
+      children: [],
+    },
   };
 
   // Создаём PDF-документ и страницу того же размера, что и канвас сцены.

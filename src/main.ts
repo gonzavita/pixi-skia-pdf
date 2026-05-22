@@ -105,15 +105,23 @@ async function main(): Promise<void> {
     btnExport.disabled = true;
     setStatus('Генерация PDF через Skia…');
     try {
+      logEvent('⏳ запуск экспорта PDF…');
       const blob = await exportSceneToPdf(ck, scene);
-      // Скачиваем готовый PDF
+
+      // Скачиваем готовый PDF. <a> обязательно добавляем в DOM — иначе
+      // в части браузеров click() по нему не срабатывает. URL отзываем
+      // с задержкой, чтобы скачивание успело начаться.
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
       a.download = 'pixi-skia-scene.pdf';
+      a.style.display = 'none';
+      document.body.appendChild(a);
       a.click();
-      URL.revokeObjectURL(url);
-      logEvent('📄 PDF успешно экспортирован');
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 2000);
+
+      logEvent(`📄 PDF экспортирован (${(blob.size / 1024).toFixed(1)} КБ)`);
       setStatus('PDF готов — файл скачан');
     } catch (err) {
       const msg = err instanceof Error ? err.message : String(err);
