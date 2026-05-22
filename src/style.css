@@ -1,0 +1,147 @@
+:root {
+  --bg: #f4f6fb;
+  --panel: #ffffff;
+  --accent: #2d6cdf;
+  --accent-hover: #1f57bd;
+  --border: #d8deea;
+  --text: #1c2536;
+  --muted: #6b7689;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+header {
+  padding: 20px 28px 8px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.subtitle {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+code {
+  background: #eef1f7;
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 0.92em;
+}
+
+main {
+  display: flex;
+  gap: 24px;
+  padding: 16px 28px 28px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+/* ── Панель управления ───────────────────────────────── */
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 240px;
+  flex: none;
+}
+
+.controls button {
+  padding: 11px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--accent);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.05s;
+  text-align: left;
+}
+
+.controls button:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.controls button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.controls button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.controls button.secondary {
+  background: #eef1f7;
+  color: var(--text);
+}
+
+.controls button.secondary:hover:not(:disabled) {
+  background: #e2e7f1;
+}
+
+.status {
+  font-size: 13px;
+  color: var(--muted);
+  padding: 8px 10px;
+  background: #eef1f7;
+  border-radius: 8px;
+}
+
+.event-log {
+  font-size: 12px;
+  font-family: 'Consolas', monospace;
+  color: var(--text);
+  background: #1c2536;
+  color: #c8d4ec;
+  border-radius: 8px;
+  padding: 10px;
+  height: 180px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  line-height: 1.5;
+}
+
+/* ── Канвасы ─────────────────────────────────────────── */
+.canvases {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+figure {
+  margin: 0;
+}
+
+figcaption {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.canvas-box {
+  width: 480px;
+  height: 360px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  display: block;
+}
+
+.canvas-box canvas {
+  border-radius: 10px;
+}

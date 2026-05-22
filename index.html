@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pixi → Skia → PDF</title>
+  </head>
+  <body>
+    <header>
+      <h1>Pixi.js → Skia → PDF</h1>
+      <p class="subtitle">
+        Рендер <code>PIXI.Container</code> через Skia (CanvasKit) с экспортом в
+        векторный PDF
+      </p>
+    </header>
+
+    <main>
+      <!-- Панель управления -->
+      <aside class="controls">
+        <button id="btn-random" type="button">
+          🎲 Сгенерировать случайную линию/фигуру
+        </button>
+        <button id="btn-export" type="button">📄 Экспорт в PDF</button>
+        <button id="btn-reset" type="button" class="secondary">
+          ↺ Сбросить сцену
+        </button>
+        <div id="status" class="status">Инициализация…</div>
+        <div id="event-log" class="event-log" aria-live="polite"></div>
+      </aside>
+
+      <!-- Два канваса: Pixi и Skia -->
+      <section class="canvases">
+        <figure>
+          <figcaption>Канвас 1 — Pixi.js (Canvas-рендерер)</figcaption>
+          <div id="pixi-host" class="canvas-box"></div>
+        </figure>
+        <figure>
+          <figcaption>Канвас 2 — Skia (CanvasKit)</figcaption>
+          <canvas id="skia-canvas" class="canvas-box" width="480" height="360"></canvas>
+        </figure>
+      </section>
+    </main>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
